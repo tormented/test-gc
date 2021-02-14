@@ -1,0 +1,11 @@
+# cloudbuild.yaml
+steps:
+- name: node:v14.9.0
+  entrypoint: npm
+  args: ["install", "-g", "@angular/cli"]
+- name: node:v14.9.0
+  entrypoint: ng
+  args: ["build"]
+- name: "gcr.io/cloud-builders/gcloud"
+  args: ["app", "deploy"]
+timeout: "1600s"
