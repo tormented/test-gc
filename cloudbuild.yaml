@@ -1,9 +1,9 @@
 # cloudbuild.yaml
 steps:
-- name: node:v14.15-slim
+- name: node:v14.15
   entrypoint: npm
   args: ["install", "-g", "@angular/cli"]
-- name: node:v14.15-slim
+- name: node:v14.15
   entrypoint: ng
   args: ["build"]
 - name: "gcr.io/cloud-builders/gcloud"
