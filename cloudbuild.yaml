@@ -6,7 +6,16 @@ steps:
 - name: node:14.15.5-alpine3.13
   entrypoint: npm
   args: ["run", "build"]
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: 'bash'
-  args: ['-c', 'gcloud config set app/cloud_build_timeout 1600 && gcloud app deploy']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+    - 'run'
+    - 'deploy'
+    - 'cloudrunservice'
+    - '--image'
+    - 'us-docker.pkg.dev/cloudrun/container/test-cg'
+    - '--region'
+    - 'us-central1'
+    - '--platform'
+    - 'managed'
+    - '--allow-unauthenticated'
 timeout: "1600s"
